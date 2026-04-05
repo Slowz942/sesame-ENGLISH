@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SESAME English — Cours Complet Blocs 1-5</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0c0f14;
+  --surface: #151921;
+  --surface2: #1c2230;
+  --surface3: #232a38;
+  --border: #2a3244;
+  --text: #e8eaf0;
+  --text2: #9aa3b8;
+  --text3: #6b7590;
+  --accent: #6c5ce7;
+  --accent2: #a29bfe;
+  --green: #00cec9;
+  --green2: #55efc4;
+  --red: #ff6b6b;
+  --orange: #fdcb6e;
+  --pink: #fd79a8;
+  --blue: #74b9ff;
+  --gradient1: linear-gradient(135deg, #6c5ce7, #a29bfe);
+  --gradient2: linear-gradient(135deg, #00cec9, #55efc4);
+  --gradient3: linear-gradient(135deg, #fd79a8, #fdcb6e);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family:'DM Sans',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.7;
+  overflow-x:hidden;
+}
+::selection { background:var(--accent); color:#fff; }
+::-webkit-scrollbar { width:6px; }
+::-webkit-scrollbar-track { background:var(--bg); }
+::-webkit-scrollbar-thumb { background:var(--border); border-radius:3px; }
+
+/* ─── NAV ─── */
+.nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  background:rgba(12,15,20,0.85);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  padding:0 2rem;
+  display:flex; align-items:center; justify-content:space-between;
+  height:60px;
+}
+.nav-logo {
+  font-family:'DM Serif Display',serif;
+  font-size:1.3rem;
+  background:var(--gradient1);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+}
+.nav-links { display:flex; gap:.5rem; flex-wrap:wrap; }
+.nav-links button {
+  background:none; border:1px solid var(--border);
+  color:var(--text2); padding:.35rem .75rem;
+  border-radius:6px; cursor:pointer; font-size:.75rem;
+  font-family:'DM Sans',sans-serif; transition:all .2s;
+}
+.nav-links button:hover, .nav-links button.active {
+  border-color:var(--accent); color:var(--accent2); background:rgba(108,92,231,0.1);
+}
+.progress-bar {
+  position:fixed; top:60px; left:0; height:3px; z-index:101;
+  background:var(--gradient1); transition:width .3s;
+}
+
+/* ─── HERO ─── */
+.hero {
+  min-height:50vh; display:flex; align-items:center; justify-content:center;
+  text-align:center; padding:8rem 2rem 4rem;
+  position:relative; overflow:hidden;
+}
+.hero::before {
+  content:''; position:absolute; top:-50%; left:-50%;
+  width:200%; height:200%;
+  background:radial-gradient(circle at 30% 40%, rgba(108,92,231,0.12) 0%, transparent 50%),
+              radial-gradient(circle at 70% 60%, rgba(0,206,201,0.08) 0%, transparent 50%);
+  animation:heroGlow 8s ease-in-out infinite alternate;
+}
+@keyframes heroGlow {
+  0% { transform:translate(0,0) rotate(0deg); }
+  100% { transform:translate(-2%,2%) rotate(3deg); }
+}
+.hero-content { position:relative; z-index:1; max-width:700px; }
+.hero h1 {
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(2.5rem,6vw,4rem);
+  line-height:1.15; margin-bottom:1rem;
+}
+.hero h1 span {
+  background:var(--gradient1);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+}
+.hero p { color:var(--text2); font-size:1.1rem; margin-bottom:.5rem; }
+.hero .stats {
+  display:flex; gap:2rem; justify-content:center; margin-top:2rem;
+  flex-wrap:wrap;
+}
+.hero .stat {
+  text-align:center;
+}
+.hero .stat-num {
+  font-family:'DM Serif Display',serif;
+  font-size:2rem;
+  background:var(--gradient2);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+}
+.hero .stat-label { font-size:.8rem; color:var(--text3); }
+
+/* ─── FREQUENCY TABLE ─── */
+.freq-section {
+  max-width:900px; margin:0 auto 4rem; padding:0 2rem;
+}
+.freq-title {
+  font-family:'DM Serif Display',serif;
+  font-size:1.8rem; margin-bottom:1.5rem; text-align:center;
+}
+.freq-grid { display:flex; flex-direction:column; gap:.6rem; }
+.freq-row {
+  display:grid; grid-template-columns:50px 1fr 100px 60px;
+  align-items:center; gap:1rem;
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:10px; padding:.8rem 1.2rem;
+  transition:all .3s;
+}
+.freq-row:hover { border-color:var(--accent); transform:translateX(4px); }
+.freq-rank {
+  font-family:'JetBrains Mono',monospace;
+  font-size:.85rem; color:var(--text3);
+}
+.freq-topic { font-weight:600; }
+.freq-bar-wrap {
+  height:6px; background:var(--surface3); border-radius:3px; overflow:hidden;
+}
+.freq-bar {
+  height:100%; border-radius:3px;
+  transition:width 1s ease;
+}
+.freq-pct {
+  font-family:'JetBrains Mono',monospace;
+  font-size:.8rem; color:var(--accent2); text-align:right;
+}
+
+/* ─── SECTIONS ─── */
+.section {
+  display:none; max-width:900px; margin:0 auto;
+  padding:2rem 2rem 6rem;
+  animation:fadeIn .5s ease;
+}
+.section.active { display:block; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+.section-header {
+  margin-bottom:3rem; padding:2rem;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:16px;
+  position:relative; overflow:hidden;
+}
+.section-header::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+}
+.section-header.bloc1::before { background:var(--gradient1); }
+.section-header.bloc2::before { background:var(--gradient2); }
+.section-header.bloc3::before { background:var(--gradient3); }
+.section-header.bloc4::before { background:linear-gradient(135deg,#74b9ff,#a29bfe); }
+.section-header.bloc5::before { background:linear-gradient(135deg,#ff6b6b,#fdcb6e); }
+
+.section-header .bloc-num {
+  font-family:'JetBrains Mono',monospace;
+  font-size:.75rem; color:var(--accent2);
+  text-transform:uppercase; letter-spacing:2px;
+  margin-bottom:.5rem;
+}
+.section-header h2 {
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(1.8rem,4vw,2.5rem);
+  margin-bottom:.5rem;
+}
+.section-header p { color:var(--text2); }
+.section-header .weight {
+  display:inline-block; margin-top:.75rem;
+  padding:.3rem .8rem; border-radius:20px;
+  font-size:.8rem; font-weight:600;
+}
+.section-header.bloc1 .weight { background:rgba(108,92,231,0.2); color:var(--accent2); }
+.section-header.bloc2 .weight { background:rgba(0,206,201,0.2); color:var(--green2); }
+.section-header.bloc3 .weight { background:rgba(253,121,168,0.2); color:var(--pink); }
+.section-header.bloc4 .weight { background:rgba(116,185,255,0.2); color:var(--blue); }
+.section-header.bloc5 .weight { background:rgba(255,107,107,0.2); color:var(--red); }
+
+/* ─── LESSON CARDS ─── */
+.lesson {
+  margin-bottom:2.5rem;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:14px;
+  overflow:hidden;
+}
+.lesson-head {
+  padding:1.2rem 1.5rem;
+  cursor:pointer;
+  display:flex; align-items:center; justify-content:space-between;
+  transition:background .2s;
+}
+.lesson-head:hover { background:var(--surface2); }
+.lesson-head h3 {
+  font-family:'DM Serif Display',serif;
+  font-size:1.25rem;
+}
+.lesson-head .arrow {
+  font-size:1.2rem; transition:transform .3s;
+  color:var(--text3);
+}
+.lesson.open .lesson-head .arrow { transform:rotate(180deg); }
+.lesson-body {
+  display:none; padding:0 1.5rem 1.5rem;
+}
+.lesson.open .lesson-body { display:block; animation:fadeIn .3s; }
+
+/* ─── CONTENT ELEMENTS ─── */
+h4 {
+  font-family:'DM Serif Display',serif;
+  font-size:1.1rem; margin:1.5rem 0 .75rem;
+  color:var(--accent2);
+}
+p { margin-bottom:.75rem; }
+.formula {
+  font-family:'JetBrains Mono',monospace;
+  background:var(--surface3);
+  padding:.6rem 1rem;
+  border-radius:8px;
+  border-left:3px solid var(--accent);
+  margin:.75rem 0;
+  font-size:.9rem;
+  color:var(--green2);
+}
+
+/* Tables */
+.tbl-wrap { overflow-x:auto; margin:.75rem 0; }
+table {
+  width:100%; border-collapse:collapse;
+  font-size:.88rem;
+}
+th {
+  text-align:left; padding:.6rem .8rem;
+  background:var(--surface3);
+  border-bottom:2px solid var(--accent);
+  font-weight:600; font-size:.8rem;
+  text-transform:uppercase; letter-spacing:1px;
+  color:var(--accent2);
+}
+td {
+  padding:.55rem .8rem;
+  border-bottom:1px solid var(--border);
+}
+tr:hover td { background:rgba(108,92,231,0.05); }
+
+/* Trap boxes */
+.trap {
+  background:rgba(255,107,107,0.08);
+  border:1px solid rgba(255,107,107,0.25);
+  border-radius:10px;
+  padding:1rem 1.2rem;
+  margin:1rem 0;
+}
+.trap-title {
+  font-family:'JetBrains Mono',monospace;
+  font-size:.8rem; font-weight:700;
+  color:var(--red);
+  text-transform:uppercase;
+  letter-spacing:1px;
+  margin-bottom:.5rem;
+  display:flex; align-items:center; gap:.5rem;
+}
+.trap .wrong { color:var(--red); }
+.trap .right { color:var(--green2); }
+
+/* Tip boxes */
+.tip {
+  background:rgba(0,206,201,0.08);
+  border:1px solid rgba(0,206,201,0.25);
+  border-radius:10px;
+  padding:1rem 1.2rem;
+  margin:1rem 0;
+}
+.tip-title {
+  font-family:'JetBrains Mono',monospace;
+  font-size:.8rem; font-weight:700;
+  color:var(--green);
+  text-transform:uppercase; letter-spacing:1px;
+  margin-bottom:.5rem;
+}
+
+/* Key rule */
+.key-rule {
+  background:rgba(108,92,231,0.1);
+  border:1px solid rgba(108,92,231,0.3);
+  border-radius:10px;
+  padding:1rem 1.2rem;
+  margin:1rem 0;
+  border-left:4px solid var(--accent);
+}
+.key-rule strong { color:var(--accent2); }
+
+/* Examples */
+.ex {
+  font-family:'JetBrains Mono',monospace;
+  font-size:.85rem;
+  color:var(--text);
+  background:var(--surface3);
+  padding:.4rem .7rem;
+  border-radius:5px;
+  display:inline-block;
+  margin:.2rem 0;
+}
+.ex em { font-style:normal; color:var(--green2); font-weight:600; }
+.ex .err { color:var(--red); text-decoration:line-through; }
+
+/* Quiz */
+.quiz-box {
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:1.5rem;
+  margin:1.5rem 0;
+}
+.quiz-box h4 {
+  color:var(--orange); margin-top:0;
+}
+.quiz-q {
+  margin-bottom:1rem; padding-bottom:1rem;
+  border-bottom:1px solid var(--border);
+}
+.quiz-q:last-child { border-bottom:none; margin-bottom:0; padding-bottom:0; }
+.quiz-q p {
+  font-weight:600; margin-bottom:.5rem;
+}
+.quiz-q .options { display:flex; flex-wrap:wrap; gap:.5rem; }
+.quiz-q .opt {
+  padding:.4rem .9rem;
+  border:1px solid var(--border);
+  border-radius:8px;
+  cursor:pointer;
+  font-size:.85rem;
+  transition:all .2s;
+  font-family:'JetBrains Mono',monospace;
+}
+.quiz-q .opt:hover { border-color:var(--accent); }
+.quiz-q .opt.correct {
+  border-color:var(--green); background:rgba(0,206,201,0.15); color:var(--green2);
+}
+.quiz-q .opt.wrong {
+  border-color:var(--red); background:rgba(255,107,107,0.15); color:var(--red);
+}
+.quiz-q .opt.disabled { pointer-events:none; opacity:0.6; }
+.quiz-q .explanation {
+  margin-top:.5rem; font-size:.85rem;
+  color:var(--text2); display:none;
+  padding:.5rem .7rem;
+  background:var(--surface3);
+  border-radius:6px;
+}
+
+/* Next/prev buttons */
+.nav-buttons {
+  display:flex; justify-content:space-between; margin-top:3rem;
+  gap:1rem;
+}
+.nav-btn {
+  padding:.8rem 1.5rem;
+  border:1px solid var(--border);
+  border-radius:10px;
+  background:var(--surface);
+  color:var(--text);
+  cursor:pointer;
+  font-family:'DM Sans',sans-serif;
+  font-size:.9rem;
+  font-weight:600;
+  transition:all .3s;
+}
+.nav-btn:hover { border-color:var(--accent); background:var(--surface2); }
+.nav-btn.primary {
+  background:var(--accent);
+  border-color:var(--accent);
+  color:#fff;
+}
+.nav-btn.primary:hover { background:var(--accent2); }
+
+/* Responsive */
+@media(max-width:700px){
+  .nav { padding:0 1rem; }
+  .nav-links button { font-size:.65rem; padding:.25rem .5rem; }
+  .hero { padding:6rem 1rem 3rem; }
+  .section { padding:1rem 1rem 4rem; }
+  .freq-row { grid-template-columns:40px 1fr 80px 50px; font-size:.85rem; }
+  .lesson-head h3 { font-size:1.05rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">SESAME English</div>
+  <div class="nav-links">
+    <button onclick="showSection('home')" class="active" id="nav-home">Accueil</button>
+    <button onclick="showSection('bloc1')" id="nav-bloc1">Bloc 1</button>
+    <button onclick="showSection('bloc2')" id="nav-bloc2">Bloc 2</button>
+    <button onclick="showSection('bloc3')" id="nav-bloc3">Bloc 3</button>
+    <button onclick="showSection('bloc4')" id="nav-bloc4">Bloc 4</button>
+    <button onclick="showSection('bloc5')" id="nav-bloc5">Bloc 5</button>
+  </div>
+</nav>
+<div class="progress-bar" id="progressBar" style="width:0%"></div>
+
+<!-- HOME -->
+<div class="section active" id="sec-home">
+<div class="hero">
+  <div class="hero-content">
+    <h1>Maîtrise l'anglais <span>SESAME</span></h1>
+    <p>40 questions · 30 minutes · 0 point négatif · 45 secondes/question</p>
+    <p style="color:var(--text3);font-size:.9rem">15 questions grammaire + 25 questions vocabulaire/logique/traduction</p>
+    <div class="stats">
+      <div class="stat"><div class="stat-num">5</div><div class="stat-label">Blocs stratégiques</div></div>
+      <div class="stat"><div class="stat-num">20</div><div class="stat-label">Pièges identifiés</div></div>
+      <div class="stat"><div class="stat-num">50+</div><div class="stat-label">Exercices type</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="freq-section">
+  <h3 class="freq-title">Fréquence réelle au concours — par analyse des annales</h3>
+  <div class="freq-grid">
+    <div class="freq-row"><span class="freq-rank">#1</span><span class="freq-topic">Tenses & Verb Forms</span><div class="freq-bar-wrap"><div class="freq-bar" style="width:92%;background:var(--gradient1)"></div></div><span class="freq-pct">~25%</span></div>
+    <div class="freq-row"><span class="freq-rank">#2</span><span class="freq-topic">Vocabulary, False Friends & Idioms</span><div class="freq-bar-wrap"><div class="freq-bar" style="width:78%;background:var(--gradient2)"></div></div><span class="freq-pct">~22%</span></div>
+    <div class="freq-row"><span class="freq-rank">#3</span><span class="freq-topic">Linking Words & Sentence Structure</span><div class="freq-bar-wrap"><div class="freq-bar" style="width:60%;background:var(--gradient3)"></div></div><span class="freq-pct">~15%</span></div>
+    <div class="freq-row"><span class="freq-rank">#4</span><span class="freq-topic">Modals, Conditionals, Passive, Reported</span><div class="freq-bar-wrap"><div class="freq-bar" style="width:55%;background:linear-gradient(135deg,#74b9ff,#a29bfe)"></div></div><span class="freq-pct">~15%</span></div>
+    <div class="freq-row"><span class="freq-rank">#5</span><span class="freq-topic">Phrasal Verbs, Gerund/Infinitive, Prepositions</span><div class="freq-bar-wrap"><div class="freq-bar" style="width:45%;background:linear-gradient(135deg,#ff6b6b,#fdcb6e)"></div></div><span class="freq-pct">~12%</span></div>
+    <div class="freq-row"><span class="freq-rank">#6</span><span class="freq-topic">Expressions idiomatiques & Traduction</span><div class="freq-bar-wrap"><div class="freq-bar" style="width:30%;background:linear-gradient(135deg,#dfe6e9,#b2bec3)"></div></div><span class="freq-pct">~8%</span></div>
+    <div class="freq-row"><span class="freq-rank">#7</span><span class="freq-topic">Culture anglo-saxonne</span><div class="freq-bar-wrap"><div class="freq-bar" style="width:15%;background:linear-gradient(135deg,#636e72,#b2bec3)"></div></div><span class="freq-pct">~3%</span></div>
+  </div>
+  <p style="text-align:center;color:var(--text3);font-size:.8rem;margin-top:1rem">Source : analyse croisée des annales 2010-2025 et des retours d'expérience publiés par les prépas</p>
+</div>
+</div>
+
+<!-- ═══════════════════════ BLOC 1 — TENSES ═══════════════════════ -->
+<div class="section" id="sec-bloc1">
+<div class="section-header bloc1">
+  <div class="bloc-num">Bloc 1 — Priorité maximale</div>
+  <h2>Les Temps (Tenses)</h2>
+  <p>Présent dans quasiment tous les sujets depuis 10 ans. Le piège For/Since/Ago est le n°1 absolu.</p>
+  <span class="weight">~25% du QCM</span>
+</div>
+
+<!-- Present Simple vs Continuous -->
+<div class="lesson" id="l1-1">
+<div class="lesson-head" onclick="toggleLesson('l1-1')"><h3>1.1 Present Simple vs Present Continuous</h3><span class="arrow">▼</span></div>
+<div class="lesson-body">
+
+<div class="key-rule">
+<strong>La question du concours n'est jamais "conjugue ce verbe". C'est toujours "choisis LE BON TEMPS dans ce contexte".</strong>
+</div>
+
+<h4>Present Simple — Ce qui est permanent</h4>
+<div class="formula">Sujet + V (+ <strong>-s</strong> à he/she/it)</div>
+
+<div class="tbl-wrap"><table>
+<tr><th>Usage</th><th>Exemple</th><th>Signal</th></tr>
+<tr><td>Habitude</td><td><span class="ex">I <em>wake up</em> at 7 every day.</span></td><td>every, always, usually, often</td></tr>
+<tr><td>Vérité générale</td><td><span class="ex">Water <em>boils</em> at 100°C.</span></td><td>faits scientifiques</td></tr>
+<tr><td>Horaire fixe</td><td><span class="ex">The train <em>leaves</em> at 9:15.</span></td><td>horaires, programmes</td></tr>
+<tr><td>Stative verbs</td><td><span class="ex">I <em>know</em> the answer.</span></td><td>verbes d'état (voir liste)</td></tr>
+</table></div>
+
+<h4>Present Continuous — Ce qui se passe maintenant ou est temporaire</h4>
+<div class="formula">Sujet + am/is/are + V<strong>-ing</strong></div>
+
+<div class="tbl-wrap"><table>
+<tr><th>Usage</th><th>Exemple</th><th>Signal</th></tr>
+<tr><td>Action en cours</td><td><span class="ex">She <em>is working</em> right now.</span></td><td>now, right now, at the moment</td></tr>
+<tr><td>Temporaire</td><td><span class="ex">I<em>'m staying</em> at a hotel this week.</span></td><td>this week, these days, currently</td></tr>
+<tr><td>Plan futur arrangé</td><td><span class="ex">We<em>'re meeting</em> them tomorrow.</span></td><td>date/lieu/heure précis</td></tr>
+<tr><td>Tendance</td><td><span class="ex">Prices <em>are rising</em>.</span></td><td>changement en cours</td></tr>
+</table></div>
+
+<div class="trap">
+<div class="trap-title">⚠️ PIÈGE N°1 — LES STATIVE VERBS</div>
+<p>Ces verbes <strong>REFUSENT</strong> le continuous. Jamais de -ing :</p>
+<p><strong>Pensée :</strong> know, believe, understand, remember, think (= croire), suppose, realize</p>
+<p><strong>Émotions :</strong> love, hate, like, want, need, wish, prefer</p>
+<p><strong>Sens :</strong> see, hear, smell, taste (perception involontaire)</p>
+<p><strong>Possession :</strong> have (= posséder), own, belong</p>
+<p><strong>Autres :</strong> be, seem, mean, cost, contain</p>
+<p><span class="ex"><span class="err">I am knowing</span> the answer.</span> → <span class="ex">I <em>know</em> the answer.</span></p>
+</div>
+
+<div class="trap">
+<div class="trap-title">⚠️ PIÈGE N°2 — DOUBLE SENS</div>
+<p>Certains verbes changent de sens selon la forme :</p>
+<p><span class="ex">I <em>think</em> you're right.</span> → opinion (stative) → Simple</p>
+<p><span class="ex">I<em>'m thinking</em> about changing jobs.</span> → réflexion active → Continuous</p>
+<p><span class="ex">I <em>have</em> a car.</span> → possession → Simple</p>
+<p><span class="ex">I<em>'m having</em> lunch.</span> → action → Continuous</p>
+</div>
+
+<div class="tip">
+<div class="tip-title">💡 TECHNIQUE EXPRESS</div>
+<p>Traduis le verbe avec "être en train de" en français. Si ça sonne bizarre → <strong>Present Simple</strong>.</p>
+<p>"Je suis en train de savoir" ? Bizarre → <strong>I know</strong> ✅</p>
+<p>"Je suis en train de travailler" ? Normal → <strong>I'm working</strong> ✅</p>
+</div>
+
+<div class="trap">
+<div class="trap-title">⚠️ PIÈGE N°3 — LE -S À LA 3e PERSONNE</div>
+<p>Au concours, <strong>élimine systématiquement</strong> les propositions qui oublient le -s :</p>
+<p><span class="ex"><span class="err">He think</span></span> → <span class="ex">He think<em>s</em></span></p>
+<p><span class="ex"><span class="err">She want</span></span> → <span class="ex">She want<em>s</em></span></p>
+<p>C'est du point gratuit : si une option n'a pas le -s, elle est fausse.</p>
+</div>
+
+</div></div>
+
+<!-- Past Simple vs Continuous -->
+<div class="lesson" id="l1-2">
+<div class="lesson-head" onclick="toggleLesson('l1-2')"><h3>1.2 Past Simple vs Past Continuous</h3><span class="arrow">▼</span></div>
+<div class="lesson-body">
+
+<h4>Past Simple — Action terminée, moment précis</h4>
+<div class="formula">V<strong>-ed</strong> (réguliers) ou <strong>2e colonne</strong> (irréguliers)</div>
+<p>Signaux : <em>yesterday, last week, in 2020, ago, then, suddenly</em></p>
+<p><span class="ex">I <em>graduated</em> in 2023.</span></p>
+<p><span class="ex">She <em>called</em> me at 3pm.</span></p>
+<p><span class="ex">He <em>woke up</em>, <em>got dressed</em> and <em>left</em>.</span> (succession)</p>
+
+<h4>Past Continuous — Le décor, l'action en cours dans le passé</h4>
+<div class="formula">was/were + V<strong>-ing</strong></div>
+<p>Signaux : <em>while, when (+ interruption), as</em></p>
+<p><span class="ex">I <em>was studying</em> when the phone <em>rang</em>.</span></p>
+<p><span class="ex">While she <em>was cooking</em>, he <em>was cleaning</em>.</span></p>
+
+<div class="trap">
+<div class="trap-title">⚠️ PIÈGE N°4 — WHEN + QUEL TEMPS ?</div>
+<p><span class="ex">When I arrived, she <em>was cooking</em>.</span> → J'arrive <strong>pendant</strong> qu'elle cuisinait</p>
+<p><span class="ex">When I arrived, she <em>cooked</em> dinner.</span> → J'arrive, <strong>puis</strong> elle a cuisiné (succession)</p>
+<p><strong>Règle :</strong> "While" = TOUJOURS Past Continuous. "When" = dépend du contexte.</p>
+</div>
+
+</div></div>
+
+<!-- Present Perfect -->
+<div class="lesson" id="l1-3">
+<div class="lesson-head" onclick="toggleLesson('l1-3')"><h3>1.3 Present Perfect vs Past Simple — LE PIÈGE N°1 DU CONCOURS</h3><span class="arrow">▼</span></div>
+<div class="lesson-body">
+
+<div class="key-rule">
+<strong>🚨 C'est LE piège récurrent, présent dans quasiment tous les sujets depuis 10 ans.</strong> Maîtrise cette partie et tu sécurises 5 à 8 points sur 40.
+</div>
+
+<h4>Present Perfect — Le passé connecté au présent</h4>
+<div class="formula">have/has + <strong>past participle</strong> (3e colonne)</div>
+
+<div class="tbl-wrap"><table>
+<tr><th>Usage</th><th>Signaux</th><th>Exemple</th></tr>
+<tr><td>Expérience de vie</td><td>ever, never</td><td><span class="ex">Have you <em>ever been</em> to London?</span></td></tr>
+<tr><td>Résultat présent</td><td>just, already, yet</td><td><span class="ex">I<em>'ve just finished</em>.</span></td></tr>
+<tr><td>Durée jusqu'à maintenant</td><td>since, for</td><td><span class="ex">She <em>has lived</em> here since 2019.</span></td></tr>
+<tr><td>Superlatif + ever</td><td>—</td><td><span class="ex">It's the best film I<em>'ve ever seen</em>.</span></td></tr>
+</table></div>
+
+<div class="trap">
+<div class="trap-title">⚠️ PIÈGE N°5 — FOR vs SINCE vs AGO</div>
+<p><strong>FOR</strong> + durée : <span class="ex">for 3 days, for 2 years, for a long time</span></p>
+<p><strong>SINCE</strong> + moment précis : <span class="ex">since Monday, since 2020, since I was born</span></p>
+<p><strong>AGO</strong> + durée (TOUJOURS Past Simple) : <span class="ex">I moved here 3 years <em>ago</em>.</span></p>
+<p style="margin-top:.5rem"><span class="ex"><span class="err">I am living in Paris since 10 years.</span></span></p>
+<p><span class="ex">I <em>have been living</em> in Paris <em>for</em> 10 years.</span></p>
+</div>
+
+<div class="tip">
+<div class="tip-title">💡 RÉFLEXE QCM</div>
+<p>Tu vois <strong>since / for / ever / never / just / already / yet</strong> → cherche le <strong>Present Perfect</strong> dans les options. Taux de réussite : ~90%.</p>
+<p>Tu vois <strong>ago / yesterday / last / in 2020</strong> → cherche le <strong>Past Simple</strong>.</p>
+</div>
+
+<h4>La différence cruciale</h4>
+<div class="tbl-wrap"><table>
+<tr><th>Present Perfect</th><th>Past Simple</th></tr>
+<tr><td><span class="ex">I<em>'ve been</em> to London.</span><br><small>expérience, pas de date</small></td><td><span class="ex">I <em>went</em> to London last summer.</span><br><small>moment précis</small></td></tr>
+<tr><td><span class="ex">She<em>'s worked</em> here for 3 years.</span><br><small>elle y travaille encore</small></td><td><span class="ex">She <em>worked</em> here for 3 years.</span><br><small>elle n'y travaille plus</small></td></tr>
+</table></div>
+
+</div></div>
+
+<!-- Present Perfect Continuous -->
+<div class="lesson" id="l1-4">
+<div class="lesson-head" onclick="toggleLesson('l1-4')"><h3>1.4 Present Perfect Continuous & Past Perfect</h3><span class="arrow">▼</span></div>
+<div class="lesson-body">
+
+<h4>Present Perfect Continuous — Durée/processus</h4>
+<div class="formula">have/has + been + V<strong>-ing</strong></div>
+
+<div class="tbl-wrap"><table>
+<tr><th>Perfect Simple (résultat)</th><th>Perfect Continuous (durée)</th></tr>
+<tr><td><span class="ex">I<em>'ve read</em> 3 books.</span> → résultat chiffré</td><td><span class="ex">I<em>'ve been reading</em> all day.</span> → insiste sur le temps passé</td></tr>
+<tr><td><span class="ex">She<em>'s written</em> the report.</span> → c'est fini</td><td><span class="ex">She<em>'s been writing</em>.</span> → peut-être encore dessus</td></tr>
+</table></div>
+
+<div class="tip">
+<div class="tip-title">💡 RÈGLE RAPIDE</div>
+<p><strong>Résultat / quantité</strong> → Perfect Simple</p>
+<p><strong>Durée / processus</strong> → Perfect Continuous</p>
+</div>
+
+<h4>Past Perfect — Le passé du passé</h4>
+<div class="formula">had + <strong>past participle</strong></div>
+<p>Sert à montrer qu'une action s'est passée <strong>AVANT</strong> une autre action passée.</p>
+<p><span class="ex">When I arrived, she <em>had already left</em>.</span></p>
+<p><span class="ex">I realized I <em>had forgotten</em> my keys.</span></p>
+
+<div class="trap">
+<div class="trap-title">⚠️ PIÈGE N°6 — HARDLY/SCARCELY/NO SOONER</div>
+<p>Structure d'inversion fréquente au concours SESAME :</p>
+<p><span class="ex"><em>Hardly had</em> he seen the dog, <em>when</em> he ran away.</span></p>
+<p><span class="ex"><em>No sooner had</em> I arrived <em>than</em> it started raining.</span></p>
+<p><strong>Hardly/Scarcely</strong> → <strong>when</strong></p>
+<p><strong>No sooner</strong> → <strong>than</strong></p>
+<p>⚠️ Ne confonds jamais : <span class="ex"><span class="err">Hardly... than</span></span> / <span class="ex"><span class="err">No sooner... when</span></span></p>
+</div>
+
+</div></div>
+
+<!-- Future -->
+<div class="lesson" id="l1-5">
+<div class="lesson-head" onclick="toggleLesson('l1-5')"><h3>1.5 Le Futur — Will vs Going to vs Present Continuous</h3><span class="arrow">▼</span></div>
+<div class="lesson-body">
+
+<div class="tbl-wrap"><table>
+<tr><th>Forme</th><th>Usage</th><th>Exemple</th></tr>
+<tr><td><strong>will</strong> + V</td><td>Décision spontanée, prédiction, promesse</td><td><span class="ex">I<em>'ll help</em> you.</span></td></tr>
+<tr><td><strong>be going to</strong> + V</td><td>Intention planifiée, prédiction sur preuves</td><td><span class="ex">Look! It<em>'s going to rain</em>.</span></td></tr>
+<tr><td><strong>Present Continuous</strong></td><td>Plan arrangé avec détails</td><td><span class="ex">I<em>'m meeting</em> John at 5pm.</span></td></tr>
+</table></div>
+
+<div class="trap">
+<div class="trap-title">⚠️ PIÈGE N°7 — WILL vs GOING TO</div>
+<p>Preuves visibles → <strong>going to</strong> : <span class="ex">She<em>'s going to</em> have a baby.</span></p>
+<p>Décision à l'instant → <strong>will</strong> : <span class="ex">"Phone's ringing." — "I<em>'ll</em> answer it."</span></p>
+<p>Promesse → <strong>will</strong> : <span class="ex">I <em>will</em> never forget you.</span></p>
+</div>
+
+</div></div>
+
+<!-- QUIZ BLOC 1 -->
+<div class="lesson" id="l1-quiz">
+<div class="lesson-head" onclick="toggleLesson('l1-quiz')"><h3>🧪 Quiz Bloc 1 — Teste-toi (type concours)</h3><span class="arrow">▼</span></div>
+<div class="lesson-body">
+<div class="quiz-box">
+<h4>Questions type SESAME — Tenses</h4>
+
+<div class="quiz-q" data-correct="B">
+<p>1. "It's high time you _______ listening to the good advice you are being given."</p>
+<div class="options">
+<span class="opt" data-val="A" onclick="checkQuiz(this)">A) start</span>
+<span class="opt" data-val="B" onclick="checkQuiz(this)">B) started</span>
+<span class="opt" data-val="C" onclick="checkQuiz(this)">C) would start</span>
+<span class="opt" data-val="D" onclick="checkQuiz(this)">D) have started</span>
+</div>
+<div class="explanation">✅ "It's high time" + PAST → c'est une structure fixe. Même si le sens est présent/futur, on met le prétérit. C'est un piège classique SESAME. Aussi : "advices" n'existe pas → "advice" est indénombrable.</div>
+</div>
+
+<div class="quiz-q" data-correct="B">
+<p>2. "Hardly had he seen the dog, _______ away."</p>
+<div class="options">
+<span class="opt" data-val="A" onclick="checkQuiz(this)">A) he runs</span>
+<span class="opt" data-val="B" onclick="checkQuiz(this)">B) when he ran</span>
+<span class="opt" data-val="C" onclick="checkQuiz(this)">C) than he ran</span>
+<span class="opt" data-val="D" onclick="checkQuiz(this)">D) when he runs</span>
+</div>
+<div class="explanation">✅ "Hardly" → toujours suivi de "when" (pas "than"). Et le verbe doit être au prétérit (ran) pour correspondre au past perfect "had seen". Question tombée au concours SESAME officiel.</div>
+</div>
+
+<div class="quiz-q" data-correct="C">
+<p>3. "She _______ in Paris for 10 years."</p>
+<div class="options">
+<span class="opt" data-val="A" onclick="checkQuiz(this)">A) is living</span>
+<span class="opt" data-val="B" onclick="checkQuiz(this)">B) lives</span>
+<span class="opt" data-val="C" onclick="checkQuiz(this)">C) has been living</span>
+<span class="opt" data-val="D" onclick="checkQuiz(this)">D) lived</span>
+</div>
+<div class="explanation">✅ "for 10 years" + action qui continue → Present Perfect Continuous. C'est LE piège n°1 du concours. "is living for..." est la faute française classique.</div>
+</div>
+
+<div class="quiz-q" data-correct="A">
+<p>4. "If I _______ you, I would accept the offer."</p>
+<div class="options">
+<span class="opt" data-val="A" onclick="checkQuiz(this)">A) were</span>
+<span class="opt" data-val="B" onclick="checkQuiz(this)">B) was</span>
+<span class="opt" data-val="C" onclick="checkQuiz(this)">C) am</span>
+<span class="opt" data-val="D" onclick="checkQuiz(this)">D) would be</span>
+</div>
+<div class="explanation">✅ Conditionnel type 2 → "If I were" (pas "was" au concours). Le subjonctif "were" est obligatoire pour tous les sujets dans la structure "If I were you".</div>
+</div>
+
+<div class="quiz-q" data-correct="D">
+<p>5. "By the time we arrived, the film _______."</p>
+<div class="options">
+<span class="opt" data-val="A" onclick="checkQuiz(this)">A) started</span>
+<span class="opt" data-val="B" onclick="checkQuiz(this)">B) has started</span>
+<span class="opt" data-val="C" onclick="checkQuiz(this)">C) was starting</span>
+<span class="opt" data-val="D" onclick="checkQuiz(this)">D) had already started</span>
+</div>
+<div class="explanation">✅ "By the time we arrived" (passé) → l'action du film est AVANT → Past Perfect. Le film avait commencé avant notre arrivée.</div>
+</div>
+
+<div class="quiz-q" data-correct="B">
+<p>6. "She _______ three languages fluently."</p>
+<div class="options">
+<span class="opt" data-val="A" onclick="checkQuiz(this)">A) is speaking</span>
+<span class="opt" data-val="B" onclick="checkQuiz(this)">B) speaks</span>
+<span class="opt" data-val="C" onclick="checkQuiz(this)">C) is speak</span>
+<span class="opt" data-val="D" onclick="checkQuiz(this)">D) speaking</span>
+</div>
+<div class="explanation">✅ Capacité permanente → Present Simple. "Speak" dans le sens de "maîtriser une langue" est une capacité, pas une action en cours.</div>
+</div>
+
+<div class="quiz-q" data-correct="C">
+<p>7. "I _______ to Japan. I'd love to go someday."</p>
+<div class="options">
+<span class="opt" data-val="A" onclick="checkQuiz(this)">A) didn't go</span>
+<span class="opt" data-val="B" onclick="checkQuiz(this)">B) wasn't going</span>
+<span class="opt" data-val="C" onclick="checkQuiz(this)">C) have never been</span>
+<span class="opt" data-val="D" onclick="checkQuiz(this)">D) never went</span>
+</div>
+<div class="explanation">✅ Expérience de vie sans date précise + "never" → Present Perfect. "I'd love to go" confirme le lien avec le présent.</div>
+</div>
+
+<div class="quiz-q" data-correct="A">
+<p>8. "No sooner had she left _______ it started to rain."</p>
+<div class="options">
+<span class="opt" data-val="A" onclick="checkQuiz(this)">A) than</span>
+<span class="opt" data-val="B" onclick="checkQuiz(this)">B) when</span>
+<span class="opt" data-val="C" onclick="checkQuiz(this)">C) that</span>
+<span class="opt" data-val="D" onclick="checkQuiz(this)">D) before</span>
+</div>
+<div class="explanation">✅ "No sooner... than" — structure fixe. Ne confonds pas avec "Hardly... when". Piège récurrent au SESAME.</div>
+</div>
+</div>
+</div></div>
+
+<div class="nav-buttons">
+<button class="nav-btn" onclick="showSection('home')">← Accueil</button>
+<button class="nav-btn primary" onclick="showSection('bloc2')">Bloc 2 — Vocabulaire →</button>
+</div>
+</div>
+
+<!-- ═══════════════════════ BLOC 2 — VOCABULARY ═══════════════════════ -->
+<div class="section" id="sec-bloc2">
+<div class="section-header bloc2">
+  <div class="bloc-num">Bloc 2 — Priorité haute</div>
+  <h2>Vocabulaire, Faux Amis & Expressions</h2>
+  <p>25 questions sur 40 portent sur le vocabulaire, la logique lexicale et la traduction. C'est ta mine d'or.</p>
+  <span class="weight">~22% du QCM</span>
+</div>
+
+<div class="lesson" id="l2-1">
+<div class="lesson-head" onclick="toggleLesson('l2-1')"><h3>2.1 Les 20 Faux Amis qui tombent tout le temps</h3><span class="arrow">▼</span></div>
+<div class="lesson-body">
+
+<div class="key-rule">
+<strong>Les faux amis sont un classique absolu du SESAME.</strong> Les concepteurs adorent piéger les francophones avec des mots qui ressemblent au français mais ont un sens différent.
+</div>
+
+<div class="tbl-wrap"><table>
+<tr><th>Français</th><th>❌ Faux ami anglais</th><th>✅ Vrai sens du faux ami</th><th>✅ Traduction correcte</th></tr>
+<tr><td>Actuellement</td><td>actually</td><td>en fait, en réalité</td><td><strong>currently</strong></td></tr>
+<tr><td>Assister à</td><td>assist</td><td>aider</td><td><strong>attend</strong></td></tr>
+<tr><td>Blesser</td><td>bless</td><td>bénir</td><td><strong>injure, hurt</strong></td></tr>
+<tr><td>Commander</td><td>command</td><td>ordonner (militaire)</td><td><strong>order</strong></td></tr>
+<tr><td>Décevoir</td><td>deceive</td><td>tromper, duper</td><td><strong>disappoint</strong></td></tr>
+<tr><td>Demander</td><td>demand</td><td>exiger</td><td><strong>ask</strong></td></tr>
+<tr><td>Éventuellement</td><td>eventually</td><td>finalement</td><td><strong>possibly, perhaps</strong></td></tr>
+<tr><td>Formation</td><td>formation</td><td>création, disposition</td><td><strong>training</strong></td></tr>
+<tr><td>Lecture</td><td>lecture</td><td>conférence, cours magistral</td><td><strong>reading</strong></td></tr>
+<tr><td>Librairie</td><td>library</td><td>bibliothèque</td><td><strong>bookshop</strong></td></tr>
+<tr><td>Location</td><td>location</td><td>emplacement</td><td><strong>rental</strong></td></tr>
+<tr><td>Monnaie</td><td>money</td><td>argent (en général)</td><td><strong>currency / change</strong></td></tr>
+<tr><td>Patron</td><td>patron</td><td>client fidèle, mécène</td><td><strong>boss</strong></td></tr>
+<tr><td>Pétrole</td><td>petrol</td><td>essence</td><td><strong>oil</strong></td></tr>
+<tr><td>Prétendre</td><td>pretend</td><td>faire semblant</td><td><strong>claim</strong></td></tr>
+<tr><td>Résumer</td><td>resume</td><td>reprendre, poursuivre</td><td><strong>summarize</strong></td></tr>
+<tr><td>Sensible</td><td>sensible</td><td>raisonnable</td><td><strong>sensitive</strong></td></tr>
+<tr><td>Sympathique</td><td>sympathetic</td><td>compatissant</td><td><strong>nice, friendly</strong></td></tr>
+<tr><td>Travail</td><td>travel</td><td>voyage</td><td><strong>work</strong></td></tr>
+<tr><td>Figure</td><td>figure</td><td>chiffre, silhouette</td><td><strong>face</strong></td></tr>
+</table></div>
+
+<div class="tip">
+<div class="tip-title">💡 MÉTHODE EXPRESS</div>
+<p>Apprends les <strong>10 premiers</strong> de cette liste par cœur ce soir. Ils tombent presque à chaque session : actually, assist/attend, eventually, library, sensible, sympathetic, pretend, lecture, demand, deceive.</p>
+</div>
+
+</div></div>
+
+<div class="lesson" id="l2-2">
+<div class="lesson-head" onclick="toggleLesson('l2-2')"><h3>2.2 Collocations MAKE vs DO — Piège garanti</h3><span class="arrow">▼</span></div>
+<div class="lesson-body">
+
+<div class="key-rule">
+<strong>MAKE</strong> = créer, produire, provoquer<br>
+<strong>DO</strong> = accomplir, exécuter une tâche
+</div>
+
+<div class="tbl-wrap"><table>
+<tr><th>✅ MAKE</th><th>✅ DO</th></tr>
+<tr><td>make a decision</td><td>do homework</td></tr>
+<tr><td>make a mistake</td><td>do business</td></tr>
+<tr><td>make money</td><td>do research</td></tr>
+<tr><td>make progress</td><td>do exercise</td></tr>
+<tr><td>make an effort</td><td>do a favour</td></tr>
+<tr><td>make a complaint</td><td>do the dishes</td></tr>
+<tr><td>make a noise</td><td>do your best</td></tr>
+<tr><td>make sure</td><td>do damage</td></tr>
+</table></div>
+
+<div class="trap">
+<div class="trap-title">⚠️ PIÈGES CLASSIQUES</div>
+<p><span class="ex"><span class="err">do a decision</span></span> → <span class="ex"><em>make</em> a decision</span></p>
+<p><span class="ex"><span class="err">make homework</span></span> → <span class="ex"><em>do</em> homework</span></p>
+<p><span class="ex"><span class="err">make research</span></span> → <span class="ex"><em>do</em> research</span></p>
+</div>
+
+<h4>Autres collocations fréquentes au concours</h4>
+<p><span class="ex"><em>take</em> a photo</span> (pas make)</p>
+<p><span class="ex"><em>take</em> an exam</span> (pas pass — pass = réussir)</p>
+<p><span class="ex"><em>pay</em> attention</span></p>
+<p><span class="ex"><em>make ends meet</em></span> = joindre les deux bouts (expression tombée au SESAME officiel)</p>
+
+</div></div>
+
+<div class="lesson" id="l2-3">
+<div class="lesson-head" onclick="toggleLesson('l2-3')"><h3>2.3 Vocabulaire Thématique — Société, Business, Environnement</h3><span class="arrow">▼</span></div>
+<div class="lesson-body">
+
+<h4>🌍 Environnement (très fréquent)</h4>
+<div class="tbl-wrap"><table>
+<tr><th>Anglais</th><th>Français</th></tr>
+<tr><td>global warming / climate change</td><td>réchauffement climatique</td></tr>
+<tr><td>carbon footprint</td><td>empreinte carbone</td></tr>
+<tr><td>renewable energy</td><td>énergie renouvelable</td></tr>
+<tr><td>sustainability / sustainable</td><td>durabilité / durable</td></tr>
+<tr><td>greenhouse effect</td><td>effet de serre</td></tr>
+<tr><td>drought / flood</td><td>sécheresse / inondation</td></tr>
+<tr><td>to tackle / to address</td><td>s'attaquer à (un problème)</td></tr>
+</table></div>
+
+<h4>💻 Technologie & Société</h4>
+<div class="tbl-wrap"><table>
+<tr><th>Anglais</th><th>Français</th></tr>
+<tr><td>artificial intelligence (AI)</td><td>intelligence artificielle</td></tr>
+<tr><td>data privacy</td><td>protection des données</td></tr>
+<tr><td>cyberbullying</td><td>harcèlement en ligne</td></tr>
+<tr><td>digital divide</td><td>fracture numérique</td></tr>
+<tr><td>misinformation / fake news</td><td>désinformation</td></tr>
+<tr><td>to go viral</td><td>devenir viral</td></tr>
+</table></div>
+
+<h4>💼 Économie & Business</h4>
+<div class="tbl-wrap"><table>
+<tr><th>Anglais</th><th>Français</th></tr>
+<tr><td>unemployment</td><td>chômage</td></tr>
+<tr><td>to hire / to fire</td><td>embaucher / licencier</td></tr>
+<tr><td>GDP (Gross Domestic Product)</td><td>PIB</td></tr>
+<tr><td>trade</td><td>commerce</td></tr>
+<tr><td>inflation</td><td>inflation</td></tr>
+<tr><td>freelance / gig economy</td><td>travail indépendant</td></tr>
+<tr><td>welfare state</td><td>État-providence</td></tr>
+</table></div>
+
+<h4>Word Families — Dériver les mots</h4>
+<div class="tbl-wrap"><table>
+<tr><th>Verbe</th><th>Nom</th><th>Adjectif</th></tr>
+<tr><td>succeed</td><td>success</td><td>successful</td></tr>
+<tr><td>compete</td><td>competition</td><td>competitive</td></tr>
+<tr><td>achieve</td><td>achievement</td><td>achievable</td></tr>
+<tr><td>create</td><td>creation / creativity</td><td>creative</td></tr>
+<tr><td>decide</td><td>decision</td><td>decisive</td></tr>
+<tr><td>employ</td><td>employment</td><td>employable</td></tr>
+</table></div>
+
+<div class="tip">
+<div class="tip-title">💡 TECHNIQUE QCM — WORD FAMILIES</div>
+<p>Repère la position du mot manquant dans la phrase :</p>
+<p>Après <strong>a / the / his / her / my</strong> → c'est un <strong>nom</strong></p>
+<p>Après <strong>is / are / very / quite</strong> → c'est un <strong>adjectif</strong></p>
+<p>Avant un <strong>nom</strong> → c'est un <strong>adjectif</strong></p>
+<p>Modifie un <strong>verbe</strong> → c'est un <strong>adverbe</strong> (-ly)</p>
+</div>
+
+</div></div>
+
+<div class="lesson" id="l2-4">
+<div class="lesson-head" onclick="toggleLesson('l2-4')"><h3>2.4 Indénombrables — Le piège silencieux</h3><span class="arrow">▼</span></div>
+<div class="lesson-body">
+
+<div class="trap">
+<div class="trap-title">⚠️ PIÈGE N°8 — LES INDÉNOMBRABLES</div>
+<p>Ces mots sont TOUJOURS singuliers, jamais de "a/an", jamais de "s" :</p>
+<p><strong>advice, information, news, furniture, luggage, equipment, homework, research, evidence, knowledge, money, progress, weather, traffic</strong></p>
+<p><span class="ex"><span class="err">an advice</span></span> → <span class="ex"><em>a piece of</em> advice / some advice</span></p>
+<p><span class="ex"><span class="err">informations</span></span> → <span class="ex"><em>information</em> (jamais de s)</span></p>
+<p><span class="ex"><span class="err">a news</span></span> → <span class="ex"><em>a piece of</em> news</span></p>
+<p><span class="ex"><span class="err">good advices</span></span> → <span class="ex">good <em>advice</em></span></p>
+</div>
+
+<h4>Quantifieurs</h4>
+<div class="tbl-wrap"><table>
+<tr><th>Countable</th><th>Uncountable</th><th>Les deux</th></tr>
+<tr><td>many</td><td>much</td><td>a lot of</td></tr>
+<tr><td>few / a few</td><td>little / a little</td><td>some / any</td></tr>
+<tr><td>several</td><td>a great deal of</td><td>enough</td></tr>
+</table></div>
+
+<div class="key-rule">
+<strong>few</strong> = peu (négatif) : <span class="ex"><em>Few</em> people came.</span> → décevant<br>
+<strong>a few</strong> = quelques (positif) : <span class="ex"><em>A few</em> people came.</span> → c'est bien<br>
+<strong>little</strong> = peu (négatif) : <span class="ex">There is <em>little</em> hope.</span><br>
+<strong>a little</strong> = un peu (positif) : <span class="ex">There is <em>a little</em> hope.</span>
+</div>
+
+</div></div>
+
+<div class="nav-buttons">
+<button class="nav-btn" onclick="showSection('bloc1')">← Bloc 1</button>
+<button class="nav-btn primary" onclick="showSection('bloc3')">Bloc 3 — Linking Words →</button>
+</div>
+</div>
+
+<!-- ═══════════════════════ BLOC 3 — LINKING WORDS ═══════════════════════ -->
+<div class="section" id="sec-bloc3">
+<div class="section-header bloc3">
+  <div class="bloc-num">Bloc 3 — Structure de phrase</div>
+  <h2>Linking Words & Connecteurs</h2>
+  <p>Savoir quel connecteur utiliser et sa construction grammaticale est testé à chaque session.</p>
+  <span class="weight">~15% du QCM</span>
+</div>
+
+<div class="lesson" id="l3-1">
+<div class="lesson-head" onclick="toggleLesson('l3-1')"><h3>3.1 Connecteurs par fonction — Le tableau définitif</h3><span class="arrow">▼</span></div>
+<div class="lesson-body">
+
+<h4>Contraste / Opposition</h4>
+<div class="tbl-wrap"><table>
+<tr><th>Connecteur</th><th>Construction</th><th>Exemple</th></tr>
+<tr><td><strong>although / even though</strong></td><td>+ sujet + verbe</td><td><span class="ex"><em>Although</em> it rained, we went out.</span></td></tr>
+<tr><td><strong>despite / in spite of</strong></td><td>+ nom / V-ing</td><td><span class="ex"><em>Despite</em> the rain, we went out.</span></td></tr>
+<tr><td><strong>however</strong></td><td>début de phrase + virgule</td><td><span class="ex"><em>However</em>, this is not true.</span></td></tr>
+<tr><td><strong>whereas / while</strong></td><td>opposition directe</td><td><span class="ex">He is rich, <em>whereas</em> she is poor.</span></td></tr>
+<tr><td><strong>nevertheless</strong></td><td>formel, début de phrase</td><td><span class="ex"><em>Nevertheless</em>, we learned a lot.</span></td></tr>
+</table></div>
+
+<div class="trap">
+<div class="trap-title">⚠️ PIÈGE N°9 — ALTHOUGH vs DESPITE</div>
+<p><strong>Although</strong> + SUJET + VERBE : <span class="ex"><em>Although</em> he was tired, he kept working.</span></p>
+<p><strong>Despite</strong> + NOM / V-ING : <span class="ex"><em>Despite being</em> tired, he kept working.</span></p>
+<p><span class="ex"><span class="err">Despite he was tired</span></span> → FAUX (erreur très fréquente au concours)</p>
+<p><span class="ex"><span class="err">Although the rain</span></span> → FAUX (il manque un verbe)</p>
+</div>
+
+<h4>Cause</h4>
+<div class="tbl-wrap"><table>
+<tr><th>Connecteur</th><th>Construction</th><th>Exemple</th></tr>
+<tr><td><strong>because</strong></td><td>+ phrase complète</td><td><span class="ex">He left <em>because</em> he was bored.</span></td></tr>
+<tr><td><strong>because of / due to</strong></td><td>+ nom</td><td><span class="ex">He left <em>because of</em> the noise.</span></td></tr>
+<tr><td><strong>since / as</strong></td><td>+ phrase</td><td><span class="ex"><em>Since</em> you're here, let's start.</span></td></tr>
+</table></div>
+
+<div class="trap">
+<div class="trap-title">⚠️ PIÈGE N°10 — BECAUSE vs BECAUSE OF</div>
+<p><strong>because</strong> + PHRASE : <span class="ex">...because <em>he was tired</em></span></p>
+<p><strong>because of</strong> + NOM : <span class="ex">...because of <em>the noise</em></span></p>
+<p><span class="ex"><span class="err">because of he was tired</span></span> → FAUX</p>
+</div>
+
+<h4>Conséquence</h4>
+<p><strong>therefore, consequently, as a result, thus</strong> (formels) / <strong>so</strong> (courant)</p>
+<p><span class="ex">He didn't study. <em>Therefore</em>, he failed.</span></p>
+
+<h4>Addition</h4>
+<p><strong>moreover, furthermore, in addition</strong> (formels) / <strong>also, besides</strong></p>
+<p><strong>Not only... but also</strong> : <span class="ex"><em>Not only</em> is he smart, <em>but</em> he's <em>also</em> hard-working.</span></p>
+
+<h4>But / Objectif</h4>
+<p><strong>in order to / so as to</strong> + V : <span class="ex">She studied <em>in order to</em> pass.</span></p>
+<p><strong>so that</strong> + phrase : <span class="ex">He saved money <em>so that</em> he could travel.</span></p>
+
+</div></div>
+
+<div class="lesson" id="l3-2">
+<div class="lesson-head" onclick="toggleLesson('l3-2')"><h3>3.2 Comparatives & Superlatives + Irréguliers</h3><span class="arrow">▼</span></div>
+<div class="lesson-body">
+
+<div class="tbl-wrap"><table>
+<tr><th>Type</th><th>Court (1-2 syll.)</th><th>Long (3+ syll.)</th></tr>
+<tr><td>Comparatif</td><td>adj + <strong>-er</strong> + than</td><td><strong>more</strong> + adj + than</td></tr>
+<tr><td>Superlatif</td><td><strong>the</strong> + adj + <strong>-est</strong></td><td><strong>the most</strong> + adj</td></tr>
+</table></div>
+
+<h4>Irréguliers — Tombent TOUJOURS</h4>
+<div class="tbl-wrap"><table>
+<tr><th>Adjectif</th><th>Comparatif</th><th>Superlatif</th></tr>
+<tr><td>good</td><td><strong>better</strong></td><td><strong>the best</strong></td></tr>
+<tr><td>bad</td><td><strong>worse</strong></td><td><strong>the worst</strong></td></tr>
+<tr><td>far</td><td><strong>farther / further</strong></td><td><strong>the farthest / furthest</strong></td></tr>
+<tr><td>much / many</td><td><strong>more</strong></td><td><strong>the most</strong></td></tr>
+<tr><td>little</td><td><strong>less</strong></td><td><strong>the least</strong></td></tr>
+</table></div>
+
+<h4>Structures utiles</h4>
+<p><strong>as... as</strong> : <span class="ex">She is <em>as tall as</em> her brother.</span></p>
+<p><strong>the more... the more</strong> : <span class="ex"><em>The more</em> you study, <em>the better</em> you get.</span></p>
+<p><strong>far / much + comparatif</strong> : <span class="ex">This is <em>much better</em>.</span></p>
+
+</div></div>
+
+<div class="lesson" id="l3-3">
+<div class="lesson-head" onclick="toggleLesson('l3-3')"><h3>3.3 Relative Clauses & Pronouns</h3><span class="arrow">▼</span></div>
+<div class="lesson-body">
+
+<div class="tbl-wrap"><table>
+<tr><th>Pronom</th><th>Remplace</th><th>Exemple</th></tr>
+<tr><td><strong>who</strong></td><td>personne (sujet)</td><td><span class="ex">The man <em>who</em> called you.</span></td></tr>
+<tr><td><strong>whom</strong></td><td>personne (objet, formel)</td><td><span class="ex">The person <em>whom</em> I met.</span></td></tr>
+<tr><td><strong>which</strong></td><td>chose / animal</td><td><span class="ex">The book <em>which</em> I read.</span></td></tr>
+<tr><td><strong>that</strong></td><td>personne ou chose</td><td><span class="ex">The car <em>that</em> he bought.</span></td></tr>
+<tr><td><strong>whose</strong></td><td>possession</td><td><span class="ex">The girl <em>whose</em> father is a doctor.</span></td></tr>
+</table></div>
+
+<div class="trap">
+<div class="trap-title">⚠️ PIÈGE N°11 — THAT dans les non-defining clauses</div>
+<p><strong>Defining</strong> (pas de virgules) : <span class="ex">The student <em>who/that</em> passed got a prize.</span></p>
+<p><strong>Non-defining</strong> (AVEC virgules) : <span class="ex">Paris, <em>which</em> is beautiful, attracts tourists.</span></p>
+<p><span class="ex"><span class="err">Paris, that is beautiful</span></span> → INTERDIT. Jamais "that" après une virgule.</p>
+</div>
+
+</div></div>
+
+<div class="nav-buttons">
+<button class="nav-btn" onclick="showSection('bloc2')">← Bloc 2</button>
+<button class="nav-btn primary" onclick="showSection('bloc4')">Bloc 4 — Modaux & Conditionnels →</button>
+</div>
+</div>
+
+<!-- ═══════════════════════ BLOC 4 — MODALS, CONDITIONALS ═══════════════════════ -->
+<div class="section" id="sec-bloc4">
+<div class="section-header bloc4">
+  <div class="bloc-num">Bloc 4 — Points sûrs</div>
+  <h2>Modaux, Conditionnels, Passif & Reported Speech</h2>
+  <p>Les modaux et conditionnels sont des "règles finies" : une fois apprises, c'est du point garanti.</p>
+  <span class="weight">~15% du QCM</span>
+</div>
+
+<div class="lesson" id="l4-1">
+<div class="lesson-head" onclick="toggleLesson('l4-1')"><h3>4.1 Modal Verbs — Tableau de synthèse</h3><span class="arrow">▼</span></div>
+<div class="lesson-body">
+
+<div class="tbl-wrap"><table>
+<tr><th>Modal</th><th>Sens</th><th>Exemple</th></tr>
+<tr><td><strong>can</strong></td><td>capacité, permission</td><td><span class="ex">I <em>can</em> swim.</span></td></tr>
+<tr><td><strong>could</strong></td><td>capacité passée, politesse, possibilité</td><td><span class="ex"><em>Could</em> you help me?</span></td></tr>
+<tr><td><strong>may</strong></td><td>permission (formel), possibilité</td><td><span class="ex">It <em>may</em> rain.</span></td></tr>
+<tr><td><strong>might</strong></td><td>possibilité (moins sûr)</td><td><span class="ex">He <em>might</em> come.</span></td></tr>
+<tr><td><strong>must</strong></td><td>obligation forte, déduction</td><td><span class="ex">You <em>must</em> wear a seatbelt.</span></td></tr>
+<tr><td><strong>should</strong></td><td>conseil</td><td><span class="ex">You <em>should</em> study more.</span></td></tr>
+<tr><td><strong>shall</strong></td><td>proposition (brit.)</td><td><span class="ex"><em>Shall</em> we go?</span></td></tr>
+</table></div>
+
+<div class="trap">
+<div class="trap-title">⚠️ PIÈGE N°12 — MUST vs HAVE TO vs MUSTN'T vs DON'T HAVE TO</div>
+<p><strong>must</strong> = obligation personnelle : <span class="ex">I <em>must</em> stop smoking.</span></p>
+<p><strong>have to</strong> = obligation externe : <span class="ex">I <em>have to</em> wear a uniform.</span></p>
+<p><strong>mustn't</strong> = INTERDICTION : <span class="ex">You <em>mustn't</em> cheat.</span></p>
+<p><strong>don't have to</strong> = PAS OBLIGÉ (≠ mustn't) : <span class="ex">You <em>don't have to</em> come.</span></p>
+<p style="margin-top:.5rem;color:var(--orange)">⚠️ La différence <strong>mustn't ≠ don't have to</strong> est un piège classique. L'un interdit, l'autre donne le choix.</p>
+</div>
+
+<div class="trap">
+<div class="trap-title">⚠️ PIÈGE N°13 — MUST (déduction)</div>
+<p><strong>must</strong> + V = déduction présente : <span class="ex">He <em>must be</em> at home.</span> (= il est sûrement...)</p>
+<p><strong>must have</strong> + PP = déduction passée : <span class="ex">She <em>must have forgotten</em>.</span></p>
+<p><strong>can't have</strong> + PP = impossibilité passée : <span class="ex">He <em>can't have said</em> that.</span></p>
+</div>
+
+</div></div>
+
+<div class="lesson" id="l4-2">
+<div class="lesson-head" onclick="toggleLesson('l4-2')"><h3>4.2 Conditionals — Les 4 Types</h3><span class="arrow">▼</span></div>
+<div class="lesson-body">
+
+<div class="tbl-wrap"><table>
+<tr><th>Type</th><th>If-clause</th><th>Main clause</th><th>Usage</th></tr>
+<tr><td><strong>0</strong></td><td>If + present</td><td>present</td><td>Vérité générale</td></tr>
+<tr><td><strong>1</strong></td><td>If + present</td><td>will + V</td><td>Probable</td></tr>
+<tr><td><strong>2</strong></td><td>If + past</td><td>would + V</td><td>Irréel présent</td></tr>
+<tr><td><strong>3</strong></td><td>If + past perfect</td><td>would have + PP</td><td>Irréel passé</td></tr>
+</table></div>
+
+<p><span class="ex">Type 0 : If you heat water, it <em>boils</em>.</span></p>
+<p><span class="ex">Type 1 : If it <em>rains</em>, I <em>will</em> stay home.</span></p>
+<p><span class="ex">Type 2 : If I <em>had</em> money, I <em>would</em> travel.</span></p>
+<p><span class="ex">Type 3 : If I <em>had studied</em>, I <em>would have passed</em>.</span></p>
+
+<div class="trap">
+<div class="trap-title">⚠️ PIÈGE N°14 — JAMAIS "WILL" APRÈS "IF"</div>
+<p><span class="ex"><span class="err">If it will rain</span></span> → <span class="ex">If it <em>rains</em></span></p>
+<p><strong>Exception unique :</strong> si "if" = "whether" (= savoir si) : <span class="ex">I don't know if he <em>will</em> come.</span></p>
+</div>
+
+<div class="trap">
+<div class="trap-title">⚠️ PIÈGE N°15 — IF I WERE (pas WAS)</div>
+<p>Au conditionnel 2, <strong>were</strong> pour TOUS les sujets :</p>
+<p><span class="ex">If I <em>were</em> you, I would accept.</span></p>
+<p><span class="ex">If she <em>were</em> here, she would know.</span></p>
+<p>Au concours, "were" est TOUJOURS la réponse attendue.</p>
+</div>
+
+<h4>Structures utiles</h4>
+<p><strong>Unless</strong> = if... not : <span class="ex"><em>Unless</em> you hurry, you'll be late.</span></p>
+<p><strong>Provided that / As long as</strong> : <span class="ex">You can go, <em>provided that</em> you come back by 10.</span></p>
+
+</div></div>
+
+<div class="lesson" id="l4-3">
+<div class="lesson-head" onclick="toggleLesson('l4-3')"><h3>4.3 Passive Voice & Reported Speech</h3><span class="arrow">▼</span></div>
+<div class="lesson-body">
+
+<h4>Passif — Formation : be + past participle</h4>
+<div class="tbl-wrap"><table>
+<tr><th>Temps</th><th>Actif</th><th>Passif</th></tr>
+<tr><td>Present</td><td>They make cars.</td><td>Cars <strong>are made</strong>.</td></tr>
+<tr><td>Past</td><td>They built the house.</td><td>The house <strong>was built</strong>.</td></tr>
+<tr><td>Pres. Perfect</td><td>They have found it.</td><td>It <strong>has been found</strong>.</td></tr>
+<tr><td>Future</td><td>They will announce it.</td><td>It <strong>will be announced</strong>.</td></tr>
+</table></div>
+
+<h4>Reported Speech — Reculer d'un cran</h4>
+<div class="tbl-wrap"><table>
+<tr><th>Direct</th><th>Reported</th></tr>
+<tr><td>"I <strong>am</strong> happy."</td><td>He said he <strong>was</strong> happy.</td></tr>
+<tr><td>"I <strong>will</strong> come."</td><td>He said he <strong>would</strong> come.</td></tr>
+<tr><td>"I <strong>can</strong> help."</td><td>She said she <strong>could</strong> help.</td></tr>
+<tr><td>"I <strong>have finished</strong>."</td><td>He said he <strong>had finished</strong>.</td></tr>
+</table></div>
+
+<div class="trap">
+<div class="trap-title">⚠️ PIÈGE N°16 — REPORTED QUESTIONS</div>
+<p><strong>L'ordre des mots redevient affirmatif</strong> (pas d'inversion, pas de do/did) :</p>
+<p><span class="ex"><span class="err">He asked where did I live.</span></span></p>
+<p><span class="ex">He asked where I <em>lived</em>.</span> ✅</p>
+<p><span class="ex">"Do you like tea?" → He asked <em>if/whether</em> I liked tea.</span></p>
+</div>
+
+</div></div>
+
+<div class="nav-buttons">
+<button class="nav-btn" onclick="showSection('bloc3')">← Bloc 3</button>
+<button class="nav-btn primary" onclick="showSection('bloc5')">Bloc 5 — Phrasal Verbs →</button>
+</div>
+</div>
+
+<!-- ═══════════════════════ BLOC 5 — PHRASAL VERBS ═══════════════════════ -->
+<div class="section" id="sec-bloc5">
+<div class="section-header bloc5">
+  <div class="bloc-num">Bloc 5 — Points bonus</div>
+  <h2>Phrasal Verbs, Gerund/Infinitive & Prépositions</h2>
+  <p>Les phrasal verbs et le choix gerund/infinitive sont testés à chaque session. Expressions idiomatiques incluses.</p>
+  <span class="weight">~12% du QCM</span>
+</div>
+
+<div class="lesson" id="l5-1">
+<div class="lesson-head" onclick="toggleLesson('l5-1')"><h3>5.1 Les 30 Phrasal Verbs les plus fréquents</h3><span class="arrow">▼</span></div>
+<div class="lesson-body">
+
+<div class="tbl-wrap"><table>
+<tr><th>Phrasal Verb</th><th>Sens</th><th>Exemple</th></tr>
+<tr><td><strong>look up</strong></td><td>chercher (dans un dico)</td><td><span class="ex"><em>Look up</em> this word.</span></td></tr>
+<tr><td><strong>look for</strong></td><td>chercher qqch/qqn</td><td><span class="ex">I'm <em>looking for</em> my keys.</span></td></tr>
+<tr><td><strong>look after</strong></td><td>s'occuper de</td><td><span class="ex">She <em>looks after</em> her grandmother.</span></td></tr>
+<tr><td><strong>look forward to</strong></td><td>avoir hâte de (+ V-ING)</td><td><span class="ex">I <em>look forward to meeting</em> you.</span></td></tr>
+<tr><td><strong>give up</strong></td><td>abandonner</td><td><span class="ex">Don't <em>give up</em>!</span></td></tr>
+<tr><td><strong>turn down</strong></td><td>refuser</td><td><span class="ex">She <em>turned down</em> the offer.</span></td></tr>
+<tr><td><strong>carry out</strong></td><td>réaliser, mener</td><td><span class="ex">They <em>carried out</em> an experiment.</span></td></tr>
+<tr><td><strong>come up with</strong></td><td>trouver (une idée)</td><td><span class="ex">She <em>came up with</em> a solution.</span></td></tr>
+<tr><td><strong>bring up</strong></td><td>élever / aborder (sujet)</td><td><span class="ex">He was <em>brought up</em> in London.</span></td></tr>
+<tr><td><strong>break down</strong></td><td>tomber en panne</td><td><span class="ex">The car <em>broke down</em>.</span></td></tr>
+<tr><td><strong>break out</strong></td><td>éclater (guerre)</td><td><span class="ex">War <em>broke out</em> in 1914.</span></td></tr>
+<tr><td><strong>set up</strong></td><td>créer, mettre en place</td><td><span class="ex">They <em>set up</em> a company.</span></td></tr>
+<tr><td><strong>take off</strong></td><td>décoller / enlever</td><td><span class="ex">The plane <em>took off</em>.</span></td></tr>
+<tr><td><strong>take over</strong></td><td>prendre le contrôle</td><td><span class="ex">The company was <em>taken over</em>.</span></td></tr>
+<tr><td><strong>put off</strong></td><td>reporter</td><td><span class="ex">The meeting was <em>put off</em>.</span></td></tr>
+<tr><td><strong>put up with</strong></td><td>supporter, tolérer</td><td><span class="ex">I can't <em>put up with</em> this.</span></td></tr>
+<tr><td><strong>run out of</strong></td><td>être à court de</td><td><span class="ex">We've <em>run out of</em> milk.</span></td></tr>
+<tr><td><strong>find out</strong></td><td>découvrir</td><td><span class="ex">I <em>found out</em> the truth.</span></td></tr>
+<tr><td><strong>figure out</strong></td><td>comprendre</td><td><span class="ex">I can't <em>figure out</em> the answer.</span></td></tr>
+<tr><td><strong>make up</strong></td><td>inventer / se réconcilier</td><td><span class="ex">He <em>made up</em> an excuse.</span></td></tr>
+<tr><td><strong>get along with</strong></td><td>bien s'entendre</td><td><span class="ex">They <em>get along</em> well.</span></td></tr>
+<tr><td><strong>get rid of</strong></td><td>se débarrasser de</td><td><span class="ex"><em>Get rid of</em> old files.</span></td></tr>
+<tr><td><strong>make ends meet</strong></td><td>joindre les deux bouts</td><td><span class="ex">They struggle to <em>make ends meet</em>.</span></td></tr>
+</table></div>
+
+<div class="tip">
+<div class="tip-title">💡 EXPRESSION TOMBÉE AU SESAME</div>
+<p>"His family had asked for his help as they were having difficulty in ___."</p>
+<p>→ Réponse : <strong>making ends meet</strong> (= joindre les deux bouts). Les expressions idiomatiques sont impossibles à deviner — il faut les connaître.</p>
+</div>
+
+</div></div>
+
+<div class="lesson" id="l5-2">
+<div class="lesson-head" onclick="toggleLesson('l5-2')"><h3>5.2 Gerund vs Infinitive — La règle définitive</h3><span class="arrow">▼</span></div>
+<div class="lesson-body">
+
+<h4>Verbes + GERUND (V-ing)</h4>
+<div class="key-rule">
+<strong>Mnémotechnique : MEGAFAPS</strong> → Mind, Enjoy, Give up, Avoid, Finish, Admit, Postpone, Suggest
+</div>
+<p>+ enjoy, consider, deny, risk, keep (on), imagine, can't help, be worth, be used to, look forward to</p>
+
+<h4>Verbes + INFINITIVE (to + V)</h4>
+<p>want, need, decide, hope, expect, plan, agree, refuse, offer, promise, manage, afford, learn, pretend, seem</p>
+
+<h4>Verbes avec changement de sens</h4>
+<div class="tbl-wrap"><table>
+<tr><th>Verbe</th><th>+ Gerund</th><th>+ Infinitive</th></tr>
+<tr><td><strong>stop</strong></td><td><span class="ex">Stop <em>smoking</em>.</span> = arrêter de fumer</td><td><span class="ex">Stop <em>to smoke</em>.</span> = s'arrêter pour fumer</td></tr>
+<tr><td><strong>remember</strong></td><td><span class="ex">I remember <em>locking</em>.</span> = souvenir passé</td><td><span class="ex">Remember <em>to lock</em>.</span> = n'oublie pas</td></tr>
+<tr><td><strong>try</strong></td><td><span class="ex">Try <em>eating</em> less.</span> = teste</td><td><span class="ex">Try <em>to eat</em> less.</span> = fais un effort</td></tr>
+<tr><td><strong>regret</strong></td><td><span class="ex">I regret <em>telling</em> her.</span> = je regrette</td><td><span class="ex">I regret <em>to inform</em> you.</span> = formel</td></tr>
+</table></div>
+
+<div class="trap">
+<div class="trap-title">⚠️ PIÈGE N°17 — PRÉPOSITION + TOUJOURS GERUND</div>
+<p>Après une préposition, c'est TOUJOURS le gerund :</p>
+<p><span class="ex">She is good <em>at swimming</em>.</span></p>
+<p><span class="ex">I'm interested <em>in learning</em>.</span></p>
+<p><span class="ex">Thank you <em>for helping</em>.</span></p>
+<p><span class="ex">I look forward <em>to meeting</em> you.</span> (to = préposition ici, pas infinitif !)</p>
+<p><span class="ex"><span class="err">Thank you for to help</span></span> → FAUX</p>
+<p><span class="ex"><span class="err">I look forward to meet you</span></span> → FAUX</p>
+</div>
+
+</div></div>
+
+<div class="lesson" id="l5-3">
+<div class="lesson-head" onclick="toggleLesson('l5-3')"><h3>5.3 Prépositions essentielles</h3><span class="arrow">▼</span></div>
+<div class="lesson-body">
+
+<h4>Temps</h4>
+<p><strong>at</strong> + heure, moments : <span class="ex">at 5pm, at night, at Christmas</span></p>
+<p><strong>on</strong> + jours, dates : <span class="ex">on Monday, on 5th March</span></p>
+<p><strong>in</strong> + mois, années, saisons, parties du jour : <span class="ex">in June, in 2024, in the morning</span></p>
+<p>⚠️ <strong>at night</strong> (pas "in the night") — <strong>on time</strong> (= à l'heure) vs <strong>in time</strong> (= à temps)</p>
+
+<h4>Adjectif + Préposition (tombent souvent)</h4>
+<div class="tbl-wrap"><table>
+<tr><th>Combinaison</th><th>Exemple</th></tr>
+<tr><td>afraid <strong>of</strong></td><td><span class="ex">I'm afraid <em>of</em> spiders.</span></td></tr>
+<tr><td>good/bad <strong>at</strong></td><td><span class="ex">She's good <em>at</em> maths.</span></td></tr>
+<tr><td>interested <strong>in</strong></td><td><span class="ex">He's interested <em>in</em> history.</span></td></tr>
+<tr><td>responsible <strong>for</strong></td><td><span class="ex">Who is responsible <em>for</em> this?</span></td></tr>
+<tr><td>different <strong>from</strong></td><td><span class="ex">This is different <em>from</em> that.</span></td></tr>
+<tr><td>worried <strong>about</strong></td><td><span class="ex">She's worried <em>about</em> the exam.</span></td></tr>
+<tr><td>keen <strong>on</strong></td><td><span class="ex">He's keen <em>on</em> football.</span></td></tr>
+<tr><td>used <strong>to</strong> + V-ing</td><td><span class="ex">I'm used <em>to</em> waking up early.</span></td></tr>
+</table></div>
+
+<div class="trap">
+<div class="trap-title">⚠️ PIÈGE N°18 — USED TO vs BE USED TO</div>
+<p><strong>used to</strong> + V = habitude passée : <span class="ex">I <em>used to</em> smoke.</span> (= je fumais avant)</p>
+<p><strong>be used to</strong> + V-ING = être habitué à : <span class="ex">I<em>'m used to</em> working late.</span></p>
+<p><span class="ex"><span class="err">I'm used to work late</span></span> → FAUX</p>
+</div>
+
+</div></div>
+
+<!-- FINAL QUIZ -->
+<div class="lesson" id="l5-quiz">
+<div class="lesson-head" onclick="toggleLesson('l5-quiz')"><h3>🧪 Quiz Final — 10 Questions type SESAME (Blocs 1-5)</h3><span class="arrow">▼</span></div>
+<div class="lesson-body">
+<div class="quiz-box">
+<h4>Simule les conditions : 45 secondes par question</h4>
+
+<div class="quiz-q" data-correct="C">
+<p>1. "She is very _______ (create)."</p>
+<div class="options">
+<span class="opt" data-val="A" onclick="checkQuiz(this)">A) creation</span>
+<span class="opt" data-val="B" onclick="checkQuiz(this)">B) creatively</span>
+<span class="opt" data-val="C" onclick="checkQuiz(this)">C) creative</span>
+<span class="opt" data-val="D" onclick="checkQuiz(this)">D) create</span>
+</div>
+<div class="explanation">✅ Après "is very" → adjectif. Creative = adjectif. Creation = nom. Creatively = adverbe.</div>
+</div>
+
+<div class="quiz-q" data-correct="B">
+<p>2. "_______ the bad weather, the event was a success."</p>
+<div class="options">
+<span class="opt" data-val="A" onclick="checkQuiz(this)">A) Although</span>
+<span class="opt" data-val="B" onclick="checkQuiz(this)">B) Despite</span>
+<span class="opt" data-val="C" onclick="checkQuiz(this)">C) However</span>
+<span class="opt" data-val="D" onclick="checkQuiz(this)">D) Nevertheless</span>
+</div>
+<div class="explanation">✅ "the bad weather" = nom → Despite + nom. Although exigerait une phrase complète ("Although the weather was bad").</div>
+</div>
+
+<div class="quiz-q" data-correct="D">
+<p>3. "You _______ come if you don't want to."</p>
+<div class="options">
+<span class="opt" data-val="A" onclick="checkQuiz(this)">A) mustn't</span>
+<span class="opt" data-val="B" onclick="checkQuiz(this)">B) can't</span>
+<span class="opt" data-val="C" onclick="checkQuiz(this)">C) shouldn't</span>
+<span class="opt" data-val="D" onclick="checkQuiz(this)">D) don't have to</span>
+</div>
+<div class="explanation">✅ "if you don't want to" → pas d'obligation = don't have to. Mustn't = interdiction (sens opposé).</div>
+</div>
+
+<div class="quiz-q" data-correct="A">
+<p>4. "I look forward to _______ you at the conference."</p>
+<div class="options">
+<span class="opt" data-val="A" onclick="checkQuiz(this)">A) meeting</span>
+<span class="opt" data-val="B" onclick="checkQuiz(this)">B) meet</span>
+<span class="opt" data-val="C" onclick="checkQuiz(this)">C) have met</span>
+<span class="opt" data-val="D" onclick="checkQuiz(this)">D) met</span>
+</div>
+<div class="explanation">✅ "look forward to" → "to" est une PRÉPOSITION ici, pas un infinitif. Après une préposition → toujours V-ing.</div>
+</div>
+
+<div class="quiz-q" data-correct="B">
+<p>5. "The teacher asked me where I _______."</p>
+<div class="options">
+<span class="opt" data-val="A" onclick="checkQuiz(this)">A) did live</span>
+<span class="opt" data-val="B" onclick="checkQuiz(this)">B) lived</span>
+<span class="opt" data-val="C" onclick="checkQuiz(this)">C) do live</span>
+<span class="opt" data-val="D" onclick="checkQuiz(this)">D) was living</span>
+</div>
+<div class="explanation">✅ Reported question → ordre affirmatif (pas d'inversion, pas de do/did). "Where do you live?" → asked where I lived.</div>
+</div>
+
+<div class="quiz-q" data-correct="C">
+<p>6. "He _______ pretend to be sick; he actually was."</p>
+<div class="options">
+<span class="opt" data-val="A" onclick="checkQuiz(this)">A) didn't</span>
+<span class="opt" data-val="B" onclick="checkQuiz(this)">B) doesn't</span>
+<span class="opt" data-val="C" onclick="checkQuiz(this)">C) wasn't</span>
+<span class="opt" data-val="D" onclick="checkQuiz(this)">D) isn't</span>
+</div>
+<div class="explanation">✅ "pretend" = faire semblant (faux ami). "wasn't pretending" = il ne faisait pas semblant → il était vraiment malade. Test de faux ami + temps.</div>
+</div>
+
+<div class="quiz-q" data-correct="A">
+<p>7. "If I had known earlier, I _______ differently."</p>
+<div class="options">
+<span class="opt" data-val="A" onclick="checkQuiz(this)">A) would have acted</span>
+<span class="opt" data-val="B" onclick="checkQuiz(this)">B) would act</span>
+<span class="opt" data-val="C" onclick="checkQuiz(this)">C) will act</span>
+<span class="opt" data-val="D" onclick="checkQuiz(this)">D) acted</span>
+</div>
+<div class="explanation">✅ "If I had known" = conditionnel type 3 (irréel passé) → would have + past participle.</div>
+</div>
+
+<div class="quiz-q" data-correct="D">
+<p>8. "Can I have some _______, please?"</p>
+<div class="options">
+<span class="opt" data-val="A" onclick="checkQuiz(this)">A) advices</span>
+<span class="opt" data-val="B" onclick="checkQuiz(this)">B) an advice</span>
+<span class="opt" data-val="C" onclick="checkQuiz(this)">C) advise</span>
+<span class="opt" data-val="D" onclick="checkQuiz(this)">D) advice</span>
+</div>
+<div class="explanation">✅ "advice" est indénombrable → pas de "s", pas de "an". "Advise" = le verbe (conseiller), "advice" = le nom (un conseil).</div>
+</div>
+
+<div class="quiz-q" data-correct="B">
+<p>9. "The company was _______ in 2010."</p>
+<div class="options">
+<span class="opt" data-val="A" onclick="checkQuiz(this)">A) set on</span>
+<span class="opt" data-val="B" onclick="checkQuiz(this)">B) set up</span>
+<span class="opt" data-val="C" onclick="checkQuiz(this)">C) set off</span>
+<span class="opt" data-val="D" onclick="checkQuiz(this)">D) set out</span>
+</div>
+<div class="explanation">✅ "set up" = créer, fonder. "set off" = déclencher/partir. "set out" = se mettre en route. "set on" = peu utilisé.</div>
+</div>
+
+<div class="quiz-q" data-correct="C">
+<p>10. "She _______ to the meeting, but she had a flat tyre."</p>
+<div class="options">
+<span class="opt" data-val="A" onclick="checkQuiz(this)">A) should come</span>
+<span class="opt" data-val="B" onclick="checkQuiz(this)">B) must come</span>
+<span class="opt" data-val="C" onclick="checkQuiz(this)">C) was supposed to come</span>
+<span class="opt" data-val="D" onclick="checkQuiz(this)">D) will come</span>
+</div>
+<div class="explanation">✅ "was supposed to" = elle devait/était censée venir (mais ne l'a pas fait). Le past simple "had" confirme qu'on est dans le passé.</div>
+</div>
+
+</div>
+</div></div>
+
+<div class="nav-buttons">
+<button class="nav-btn" onclick="showSection('bloc4')">← Bloc 4</button>
+<button class="nav-btn primary" onclick="showSection('home')">Retour à l'accueil</button>
+</div>
+</div>
+
+<script>
+// Section navigation
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active'));
+  document.getElementById('sec-'+id).classList.add('active');
+  document.getElementById('nav-'+id).classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+  updateProgress(id);
+}
+
+function updateProgress(id) {
+  const map = {home:0, bloc1:20, bloc2:40, bloc3:60, bloc4:80, bloc5:100};
+  document.getElementById('progressBar').style.width = (map[id]||0)+'%';
+}
+
+// Lesson toggle
+function toggleLesson(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+
+// Quiz
+function checkQuiz(el) {
+  const q = el.closest('.quiz-q');
+  if(q.classList.contains('answered')) return;
+  q.classList.add('answered');
+  const correct = q.dataset.correct;
+  const val = el.dataset.val;
+  if(val === correct) {
+    el.classList.add('correct');
+  } else {
+    el.classList.add('wrong');
+    q.querySelector(`.opt[data-val="${correct}"]`).classList.add('correct');
+  }
+  q.querySelectorAll('.opt').forEach(o => { if(!o.classList.contains('correct')&&!o.classList.contains('wrong')) o.classList.add('disabled'); });
+  q.querySelector('.explanation').style.display = 'block';
+}
+
+// Scroll progress
+window.addEventListener('scroll', () => {
+  // subtle effect
+});
+</script>
+</body>
+</html>
